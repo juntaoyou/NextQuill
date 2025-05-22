@@ -3,14 +3,8 @@ import datasets
 import numpy as np
 
 from tqdm import tqdm
-import sys
-sys.path.append("/NAS/yjt/demo-rag")
 from utils.templates import Qwen2PromptTemplate
-# sys.path.append("/NAS/yjt/demo-rag/data/LongLaMP-Benchmark/longLaMP")
-# from prompts.prompts import *
 
-# sys.path.append("/NAS/yjt/demo-rag/data/LLM-TRSR/preprocess")
-# from amazon.summary_generation import *
 
 class PersonalDataset(torch.utils.data.Dataset):
     def __init__(self, 
