@@ -51,7 +51,6 @@ best_idx = -1
 model_dir = model_dirs[best_idx]
 
 model_dir = "output"
-# lora_path = "/home/chongminggaogroup/juntaoyou1/demo-rag/output_Target/checkpoint-2465"
 llm_tokenizer = AutoTokenizer.from_pretrained(model_dir)
 personal_model = AutoModelForCausalLM.from_pretrained(
     model_dir,
@@ -93,9 +92,9 @@ for sample in tqdm(dataloader, desc="Generating data"):
     texts = llm_tokenizer.batch_decode(generated_ids, skip_special_tokens=True)
     predictions.extend(texts)
 
-bleu_metric = evaluate.load("./metrics/sacrebleu")
-rouge_metric = evaluate.load('./metrics/rouge')
-meteor_metric = evaluate.load('./metrics/meteor')
+bleu_metric = evaluate.load("sacrebleu")
+rouge_metric = evaluate.load('rouge')
+meteor_metric = evaluate.load('meteor')
 result_bleu = bleu_metric.compute(predictions=predictions,
                                 references=references)
 result_rouge = rouge_metric.compute(predictions=predictions,
@@ -111,7 +110,8 @@ result = {
 }
 print(result)
 
-write_to_csv(f"demo-rag-{category}", "rouge-1", result["rouge-1"],file_path="../resul.csv")
+write_to_csv(f"demo-rag-{category}", "rouge-1", result["rouge-1"],file_path="../result
+.csv")
 write_to_csv(f"demo-rag-{category}", "rouge-L", result["rouge-L"],file_path="../result.csv")
 write_to_csv(f"demo-rag-{category}", "meteor", result["meteor"],file_path="../result.csv")
 write_to_csv(f"demo-rag-{category}", "bleu", result["bleu"],file_path="../result.csv")
